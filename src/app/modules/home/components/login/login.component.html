@@ -1,0 +1,109 @@
+<div *ngIf="loading">
+  <app-loading-screen></app-loading-screen>
+</div>
+<section class="login">
+  <div class="container">
+    <div class="row">
+      <!---->
+      <div class="col-md-7 col-sm-6">
+        <div class="loginDesc">
+          <div class="loginDescInner">
+            <label>Welcome to</label>
+            <h1>BEC <span>Engineering</span></h1>
+            <p>Being a Grade A licensed Electrical Contractor, we have ample resources of highly skilled & semi-skilled manpower, various construction equipment and tools to cater the needs of any challenge in its field of activities. Our built experience is offered to enhance your projects efficiently, timely and cost-effectively. We execute all projects with total care and responsibility.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 col-sm-6">
+        <div class="loginRight">
+          <div *ngIf="showLogin">
+            <div class="loginForm">
+              <div class="loginFormInner">
+                <div class="loginLogo"><img src="assets/images/logo.png" alt="image" title="Logo" /></div>
+                <h2>Login</h2>
+                <div [ngClass]="messageObject.class" *ngIf="messageObject">
+                  {{messageObject.message}}
+                </div>
+                <form [formGroup]="LoginForm">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="logForm" [ngClass]="{ 'has-error': formErrors.Email }">
+                        <div class="form-group">
+                          <label for="Email" class="control-label">
+                            <h3><i class="fa fa-user" aria-hidden="true"></i>Email</h3>
+                          </label>
+                          <input type="text" class="form-control" placeholder="Email" formControlName="Email"
+                            (blur)="LogValidationError()" />
+                          <span class="help-block" *ngIf="formErrors.Email">
+                            {{ formErrors.Email }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="logForm" [ngClass]="{ 'has-error': formErrors.Password }">
+                        <h3><i class="fa fa-lock" aria-hidden="true"></i>Password</h3>
+                        <input type="password" class="form-control" placeholder="Password" formControlName="Password"
+                          (blur)="LogValidationError()" />
+                        <span class="help-block" *ngIf="formErrors.Password">
+                          {{ formErrors.Password }}
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 full">
+                      <div class="remember text-left">
+                        <input type="checkbox" [(ngModel)]="rememberMe" [ngModelOptions]="{standalone: true}" />Remember
+                        Me
+                      </div>
+                    </div>
+                    <div class="col-sm-6 full">
+                      <div class="forgotpassword text-right">
+                        <a [routerLink]="['/forgotPassword']">Forgot Password</a>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="loginBtn text-left full-width"><button type="submit" (click)="onSubmit()"
+                          class="btn btn-blue logBtn">Login</button></div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!showLogin" class="privacyRight">
+            <div class="privacyForm">
+              <h1>Privacy & Policy</h1>
+              <p>
+                BARQ Electric Center About Your Information Privacy
+                So please read our privacy policy carefully to get a clear understanding of how we collect, use &
+                protect
+                your personal information on our website.
+
+                What personal information do we collect from the people that visit our blog, website or app?
+
+                When ordering or registering on our site, as appropriate, you may be asked to enter your name, email
+                address, phone number, or other details to help you with your experience.
+
+                When do we collect information?
+
+                We collect information from you when you fill out a form or enter information on our site.
+
+                How do we use your information?
+
+                We may use the information we collect from you when you register, surf the website, or use certain other
+                site features.
+              </p>
+              <button *ngIf="!showLogin" (click)="goToBack()" class="btn btn-blue logBtn">Back!</button>
+            </div>
+
+          </div>
+          <div class="privacyBtn">
+            <button *ngIf="showLogin" (click)="onClick()">privacy and policy!</button>
+          </div>
+        </div>
+      </div>
+
+      <!---->
+    </div>
+  </div>
+</section>
